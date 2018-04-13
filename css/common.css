@@ -65,7 +65,6 @@ th,td{
 }
 
 
-
 /*----------头部----------*/
 
 #head{
@@ -193,4 +192,41 @@ th,td{
 #head .down a{
 	padding-left: 25px;
 	background: url(../images/ico_01.png) 10px center no-repeat;
+}
+
+/*----------搜索----------*/
+.search{
+	margin: 40px 0;
+}
+.search .center{
+	position: relative;
+	height: 60px;
+}
+.search h1{
+	position: absolute;
+	left: 50%;
+	margin-left: -90px;
+}
+.search .searchBox{
+	float: right;
+	height: 25px;
+	margin: 16px 40px 0 0;
+	font-size: 0;
+}
+.search .searchBox input{
+	width: 250px;
+	height: 24px;
+	line-height: 24px;
+	border: none;
+	border-bottom: 1px solid #d8cebc;
+	color: #B4A078;
+	outline: none;
+	font-size: 12px;
+}
+.search .searchBox a{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/ico_03.gif);
+	vertical-align: middle;
 }
