@@ -78,22 +78,23 @@ th,td{
 #head .left{
 	color: #ccc;
 } 
-#head li{
+#head .head li{
 	float: left;
 	position: relative;
+	z-index: 2;
 }
-#head li a{
+#head .head li a{
 	color: #ccc;
 	padding: 0 10px;
 	border-left: 1px solid #5c5c5c;
 }
-#head li a:hover{
+#head .head li a:hover{
 	color: #fff;
 }
-#head li a.noborder{
+#head .head li a.noborder{
 	border: none;
 }
-#head li .margin{
+#head .head li .margin{
 	margin-right: 10px;
 }
 #head .customer{
@@ -189,10 +190,14 @@ th,td{
 #head .down:hover div{
 	display: block;
 }
-#head .down a{
+#head .head .down a{
 	padding-left: 25px;
+	
 	background: url(../images/ico_01.png) 10px center no-repeat;
 }
+
+
+
 
 /*----------搜索----------*/
 .search{
@@ -229,4 +234,85 @@ th,td{
 	height: 20px;
 	background: url(../images/ico_03.gif);
 	vertical-align: middle;
+}
+
+
+
+
+/*----------导航----------*/
+.nav{
+	position: relative;
+	background: #fff;
+}
+.nav .center{
+	position: relative;
+}
+.nav .logo,.nav .login{
+	display: none;
+}
+.navbar,.subnav{
+	font-size: 0;
+	text-align: center;
+}
+.nav .navbar li,.nav .subnav li{
+	display: inline-block;
+	font-size: 14px;
+	padding: 0 25px;
+	height: 50px;
+}
+.nav .navbar li.separate{
+	padding: 0;
+	color: #ccc;
+}
+.nav .navbar li a{
+	font-weight: bold;
+	padding-bottom: 3px;
+}
+.nav .navbar li a:hover,.nav .navbar li.active a{
+	border-bottom: 3px solid #B4A078;
+}
+
+/*购物车父级样式*/
+.cartWrap{
+	position: absolute;
+	top: -80px;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	background: url(../images/ico_04.gif);
+	cursor: pointer;
+}
+.cartWrap i{
+	font: 12px/20px "微软雅黑";
+	position: absolute;
+	color: #fff;
+	background: #d4282d;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	border-radius: 50%;
+	top: -12px;
+	right: -12px;
+}
+.cartWrap .cart{
+	display: none;
+}
+
+/*弹出导航样式*/
+.nav .subnav{
+	box-shadow: 0 6px 6px #ececec;
+	padding-bottom: 20px;
+	display: -none;
+}
+.nav .subnav ul{
+	display: none;
+}
+.nav .subnav img{
+	display: block;
+	margin: 0 auto 10px;
+}
+.nav .subnav li{
+	font-weight: bold;
+	height: auto;
+	padding: 0 30px;
 }
