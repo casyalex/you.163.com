@@ -63,3 +63,134 @@ th,td{
 .original{
 	background: #f4f4f4 url(../images/original.png) center no-repeat;
 }
+
+
+
+/*----------头部----------*/
+
+#head{
+	border-bottom: #f3f3f3;
+	box-shadow: 0 2px 2px #f3f3f3;
+}
+#head .head{
+	background: #333;
+	font: 12px/36px "微软雅黑";
+}
+#head .left{
+	color: #ccc;
+} 
+#head li{
+	float: left;
+	position: relative;
+}
+#head li a{
+	color: #ccc;
+	padding: 0 10px;
+	border-left: 1px solid #5c5c5c;
+}
+#head li a:hover{
+	color: #fff;
+}
+#head li a.noborder{
+	border: none;
+}
+#head li .margin{
+	margin-right: 10px;
+}
+#head .customer{
+	padding-right: 10px;
+	margin-right: 10px;
+	background: url(../images/customer_bg1.gif) 68px center no-repeat;
+}
+#head .customer:hover{
+	background: url(../images/customer_bg2.gif) 68px center no-repeat;
+}
+#head .customer:hover ul{
+	display: block;
+}
+#head .customer ul{
+	position: absolute;
+	border: 1px solid #ddd;
+	box-shadow: 0 0 3px rgba(0,0,0,.2);
+	background: #fff;
+	display: none;
+}
+#head .customer ul:before,#head .down div:before{
+	width: 10px;
+	height: 6px;
+	display: block;
+	content: "";
+	background: url(../images/ico_02.png);
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: -6px;
+	right: 0;
+}
+#head .customer ul li{
+	float:none;
+}
+#head .customer ul li a{
+	display: block;
+	padding: 0;
+	border-left: none;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+	margin: 0 10px;
+	color: #999;
+}
+#head .customer ul li a:hover{
+	color: #B4A078;
+}
+#head .customer .noborder a{
+	border-bottom: none;
+}
+#head .customer .phone{
+	background: url(../images/phone_bg1.gif) 62px center no-repeat;
+}
+#head .customer .phone:hover{
+	background: url(../images/phone_bg2.gif) 62px center no-repeat;
+}
+#head .customer .phone:hover div{
+	display: block;
+}
+#head .customer .phone div{
+	position: absolute;
+	width: 110px;
+	height: 57px;
+	right: -110px;
+	top: 0;
+	line-height: 20px;
+	background: #fff;
+	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	text-align: center;
+	
+	display: none;
+}
+#head .customer .phone div p:nth-child(1){
+	font-size: 14px;
+	color: #999;
+	margin-top: 10px;
+}
+#head .customer .phone div p:nth-child(2){
+	color: #ccc;
+	font-size: 12px;
+}
+#head .down div{
+	position: absolute;
+	background: #fff;
+	border: 1px solid #ddd;
+	box-shadow: 0 0 3px rgba(0,0,0,.2);
+	padding: 10px;
+	left: -45px;
+	line-height: 20px;
+	color: #B4A078;
+	display: none;
+}
+#head .down:hover div{
+	display: block;
+}
+#head .down a{
+	padding-left: 25px;
+	background: url(../images/ico_01.png) 10px center no-repeat;
+}
