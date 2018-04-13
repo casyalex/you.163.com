@@ -1,0 +1,65 @@
+body,h1,h2,h3,h4,h5,h6,p,dl,dd{
+	margin: 0;
+}
+body{
+	font-size: 14px;
+	color: #333;
+	font-family: "微软雅黑";
+}
+ul,ol{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+img{
+	border: none;
+	vertical-align: middle;
+}
+a{
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	color: #B4A078;
+}
+input{
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+}
+label{
+	vertical-align: middle;
+}
+table{
+	border-collapse: collapse;
+}
+th,td{
+	padding: 0;
+}
+
+.center{
+	width: 1090px;
+	margin:0 auto;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.clearfix:after{
+	content: "";
+	clear: both;
+	display: block;
+}
+.scaleImg img{
+	transition: 1s ease-out;
+	transform: scale(1);
+}
+.scaleImg:hover img{
+	transform: scale(1.2);
+}
+.original{
+	background: #f4f4f4 url(../images/original.png) center no-repeat;
+}
