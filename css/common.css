@@ -187,8 +187,19 @@ th,td{
 	padding: 10px;
 	left: -45px;
 	line-height: 20px;
+	width: 140px;
 	color: #B4A078;
+	text-align: center;
+	
 	display: none;
+}
+#head .down div span{
+	width: 100%;
+}
+#head .down div img{
+	width: 140px;
+	display: block;
+	margin: 0 auto;
 }
 #head .down:hover div{
 	display: block;
