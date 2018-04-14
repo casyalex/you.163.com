@@ -70,6 +70,9 @@ th,td{
 #head{
 	border-bottom: #f3f3f3;
 	box-shadow: 0 2px 2px #f3f3f3;
+	-webkit-box-shadow: 0 2px 2px #f3f3f3;
+	position: relative;
+	z-index: 2;
 }
 #head .head{
 	background: #333;
@@ -235,8 +238,6 @@ th,td{
 	background: url(../images/ico_03.gif);
 	vertical-align: middle;
 }
-
-
 
 
 /*----------导航----------*/
