@@ -458,3 +458,47 @@ th,td{
 	padding: 0 30px;
 }
 
+/*固定导航样式*/
+#navFix{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 3;
+	box-shadow: 0 2px 3px rgba(0,0,0,.2);
+}
+#navFix .logo{
+	display: block;
+	float: left;
+	margin: 13px 40px 0 0;
+}
+#navFix .navbar{
+	float: left;
+}
+#navFix .navbar li:nth-last-child(1),#navFix .navbar li:nth-last-child(2),#navFix .navbar li:nth-last-child(3),#navFix .navbar li:nth-last-child(4),#navFix .navbar li:nth-last-child(5){
+	display: none;
+}
+#navFix .navbar li{
+	line-height: 60px;
+	height: 60px;
+	padding: 0 20px;
+}
+#navFix .login{
+	display: block;
+	font-size: 14px;
+	float: right;
+	line-height: 60px;
+	margin-left: 60px;
+}
+#navFix .login a{
+	margin-right: 20px;
+	font-size: 12px;
+	color: #666;
+}
+#navFix .cartWrap{
+	position: relative;
+	float: right;
+	top: 20px;
+}
+#navFix .subnav{
+	padding-top: 10px;
+}
