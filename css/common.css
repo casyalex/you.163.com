@@ -268,7 +268,7 @@ th,td{
 	font-weight: bold;
 	padding-bottom: 3px;
 }
-.nav .navbar li a:hover,.nav .navbar li.active a{
+.nav .navbar>li>a:hover,.nav .navbar li.active a{
 	border-bottom: 3px solid #B4A078;
 }
 
@@ -295,14 +295,84 @@ th,td{
 	right: -12px;
 }
 .cartWrap .cart{
-	display: none;
+	width: 328px;
+	border: 1px solid #b5a176;
+	box-shadow: 0 0 3px rgba(0,0,0,.5);
+	position: absolute;
+	top: 30px;
+	right: -22px;
+	background: #fff;
+	padding-top: 15px;
+}
+.cartWrap .cart:before{
+	content: "";
+	width: 12px;
+	height: 8px;
+	display: block;	
+	background: url(../images/ico_17.gif);
+	position: absolute;
+	top: -8px;
+	right: 22px;
+}
+.cartWrap .list{
+	height: 300px;
+	position: relative;
+	overflow: hidden;
+}
+.cartWrap .list ul{
+	padding-left: 15px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: left;
+}
+.cartWrap .list li{
+	padding: 0;
+	display: block;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.cartWrap .list .img{
+	float: left;
+}
+.cartWrap img{
+	width: 60px;
+	height: 60px;
+	background: #f4f4f4;
+}
+.cartWrap .message{
+	width: 145px;
+	float: left;
+	padding: 5px 0 5px 10px;
+}
+.cartWrap .message p:nth-child(1){
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	font: 12px/25px "微软雅黑";
+}
+.cartWrap .message p:nth-child(3){
+	color: #c5c5c5;
+}
+.cartWrap .price{
+	float: left;
+	width: 60px;
+	padding-top: 5px;
+	font: 12px/25px "微软雅黑";
+	color: #B62628;
+}
+.cartWrap .close{
+	float: left;
+	width: 26px;
+	font: 16px/25px "微软雅黑";
+	padding-top: 5px;
 }
 
 /*弹出导航样式*/
 .nav .subnav{
 	box-shadow: 0 6px 6px #ececec;
 	padding-bottom: 20px;
-	display: -none;
+	display: none;
 }
 .nav .subnav ul{
 	display: none;
@@ -316,3 +386,4 @@ th,td{
 	height: auto;
 	padding: 0 30px;
 }
+
