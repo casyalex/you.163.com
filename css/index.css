@@ -71,7 +71,7 @@
 	width: 1090px;
 	margin: 30px auto;
 }
-#brand .brandHead{
+ .brandHead{
 	margin-bottom: 30px;
 }
 .brandHead h3{
@@ -115,6 +115,8 @@
 	position: absolute;	
 	top: 0;
 	left: 0;
+	width: 357px;
+	height: 320px;
 }
 #brand .bBox div{
 	position: relative;
@@ -128,4 +130,20 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-content: space-between;
+}
+#brand .bBox:last-child img{
+	height: 155px;
+}
+#brand .bBox:last-child h4{
+	margin-top: 25px;
+}
+#brand .bBox:last-child span{
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+/*----------新品首发----------*/
+#new{
+	width: 1090px;
+	margin: 30px auto;
 }
