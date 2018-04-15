@@ -71,7 +71,7 @@
 	width: 1090px;
 	margin: 30px auto;
 }
- .brandHead{
+.brandHead{
 	margin-bottom: 30px;
 }
 .brandHead h3{
@@ -145,5 +145,76 @@
 /*----------新品首发----------*/
 #new{
 	width: 1090px;
-	margin: 30px auto;
+	margin: 50px auto;
+}
+#new .content{
+	position: relative;
+}
+#new .carouselImgCon{
+	height: 327px;
+	position: relative;
+	overflow: hidden;
+}
+#new ul{
+	width: 2200px;
+	position: absolute;
+	left: 0;
+}
+#new li{
+	width: 265px;
+	float: left;
+	margin-right: 10px;
+	position: relative;
+	overflow: hidden;
+}
+#new .colorNum{
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #A7936e;
+	border: 1px solid #b3a07d;
+	background: #F4F0EA;
+	padding: 0 4px;
+	border-radius: 5px;
+}
+#new img{
+	width: 265px;
+	height: 265px;
+}
+#new img:nth-of-type(2){
+	display: none;
+}
+#new .title{
+	text-align: center;
+	padding: 10px 0;
+	font-size: 12px;
+}
+#new .title a{
+	font-weight: bold;
+}
+#new .title p{
+	color: #D4282D;
+	margin-top: 5px;
+}
+#new li:hover{
+	background: #F4F0EA;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+	border-radius: 5px;
+}
+#new li:hover .colorNum,#new li:hover img:nth-of-type(1){
+	display: none;
+}
+#new li:hover img:nth-of-type(2){
+	display: block;
+}
+#new .prev{
+	left: -70px;
+}
+#new .next{
+	right: -70px;
+}
+#new .prev:hover,#new .next:hover{
+	background: #b19e7a;
 }
