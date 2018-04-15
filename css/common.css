@@ -70,6 +70,9 @@ th,td{
 #head{
 	border-bottom: #f3f3f3;
 	box-shadow: 0 2px 2px #f3f3f3;
+	-webkit-box-shadow: 0 2px 2px #f3f3f3;
+	position: relative;
+	z-index: 2;
 }
 #head .head{
 	background: #333;
@@ -184,8 +187,19 @@ th,td{
 	padding: 10px;
 	left: -45px;
 	line-height: 20px;
+	width: 140px;
 	color: #B4A078;
+	text-align: center;
+	
 	display: none;
+}
+#head .down div span{
+	width: 100%;
+}
+#head .down div img{
+	width: 140px;
+	display: block;
+	margin: 0 auto;
 }
 #head .down:hover div{
 	display: block;
@@ -237,8 +251,6 @@ th,td{
 }
 
 
-
-
 /*----------导航----------*/
 .nav{
 	position: relative;
@@ -268,7 +280,7 @@ th,td{
 	font-weight: bold;
 	padding-bottom: 3px;
 }
-.nav .navbar li a:hover,.nav .navbar li.active a{
+.nav .navbar>li>a:hover,.nav .navbar li.active a{
 	border-bottom: 3px solid #B4A078;
 }
 
@@ -295,14 +307,155 @@ th,td{
 	right: -12px;
 }
 .cartWrap .cart{
+	width: 328px;
+	border: 1px solid #b5a176;
+	box-shadow: 0 0 3px rgba(0,0,0,.5);
+	position: absolute;
+	top: 30px;
+	right: -22px;
+	background: #fff;
+	padding-top: 15px;
+	
 	display: none;
+}
+.cartWrap .cart:before{
+	content: "";
+	width: 12px;
+	height: 8px;
+	display: block;	
+	background: url(../images/ico_17.gif);
+	position: absolute;
+	top: -8px;
+	right: 22px;
+}
+.cartWrap .list{
+	height: 244px;
+	position: relative;
+	overflow: hidden;
+}
+.cartWrap .list ul{
+	padding-left: 15px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: left;
+}
+.cartWrap .list li{
+	padding: 0;
+	display: block;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.cartWrap .list .img{
+	float: left;
+}
+.cartWrap img{
+	width: 60px;
+	height: 60px;
+	background: #f4f4f4;
+}
+.cartWrap .message{
+	width: 145px;
+	float: left;
+	padding: 5px 0 5px 10px;
+}
+.cartWrap .message p:nth-child(1){
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	font: 12px/25px "微软雅黑";
+}
+.cartWrap .message p:nth-child(3){
+	color: #c5c5c5;
+}
+.cartWrap .price{
+	float: left;
+	width: 55px;
+	padding-top: 5px;
+	font: 12px/25px "微软雅黑";
+	color: #B62628;
+}
+.cartWrap .close{
+	float: left;
+	width: 26px;
+	font: 16px/25px "微软雅黑";
+	padding-top: 5px;
+	text-align: center;
+}
+/*购物车滚动条样式*/
+.cartWrap .scrollBar{
+	float: right;
+	width: 17px;
+	height: 244px;
+	background: #f1f1f1;
+}
+.cartWrap .scrollBar span{
+	display: block;
+	width: 17px;
+	height: 17px;
+}
+.scrollBar .topBtn{
+	background: url(../images/topBtn_bg.gif) 0 0;
+}
+.scrollBar .topBtn:hover{
+	background: url(../images/topBtn_bg.gif) 0 -34px;
+}
+.scrollBar .topBtn:active{
+	background: url(../images/topBtn_bg.gif) 0 -51px;
+}
+.scrollBar .bottomBtn{
+	background: url(../images/bottomBtn_bg.gif) 0 0;
+}
+.scrollBar .bottomBtn:hover{
+	background: url(../images/bottomBtn_bg.gif) 0 -34px;
+}
+.scrollBar .bottomBtn:active{
+	background: url(../images/bottomBtn_bg.gif) 0 -51px;
+}
+.cartWrap .slideWrap{
+	height: 210px;
+	position: relative;
+}
+.cartWrap .slide{
+	width: 17px;
+	height: 50px;
+	background: #cecece;
+	position: absolute;
+	top: 0;
+}
+.cartWrap .slide:hover{
+	background: #a9a9a9;
+}
+.cartWrap .slide:active{
+	background: #787878;
+}
+.cartWrap .total{
+	font: 12px/66px "微软雅黑";
+	height: 66px;
+	background: #f4f0ea;
+}
+.cartWrap .total span{
+	color: #c04646;
+}
+.cartWrap .total a{
+	display: inline-block;
+	width: 110px;
+	height: 36px;
+	line-height: 36px;
+	background: #B4A078;
+	color: #fff;
+	margin-left: 20px;
+	border-radius: 2px;
+}
+.cartWrap .total a:hover{
+	opacity: 0.8;
 }
 
 /*弹出导航样式*/
 .nav .subnav{
 	box-shadow: 0 6px 6px #ececec;
 	padding-bottom: 20px;
-	display: -none;
+	display: none;
 }
 .nav .subnav ul{
 	display: none;
@@ -315,4 +468,49 @@ th,td{
 	font-weight: bold;
 	height: auto;
 	padding: 0 40px;
+}
+
+/*固定导航样式*/
+#navFix{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 3;
+	box-shadow: 0 2px 3px rgba(0,0,0,.2);
+}
+#navFix .logo{
+	display: block;
+	float: left;
+	margin: 13px 40px 0 0;
+}
+#navFix .navbar{
+	float: left;
+}
+#navFix .navbar li:nth-last-child(1),#navFix .navbar li:nth-last-child(2),#navFix .navbar li:nth-last-child(3),#navFix .navbar li:nth-last-child(4),#navFix .navbar li:nth-last-child(5){
+	display: none;
+}
+#navFix .navbar li{
+	line-height: 60px;
+	height: 60px;
+	padding: 0 20px;
+}
+#navFix .login{
+	display: block;
+	font-size: 14px;
+	float: right;
+	line-height: 60px;
+	margin-left: 60px;
+}
+#navFix .login a{
+	margin-right: 20px;
+	font-size: 12px;
+	color: #666;
+}
+#navFix .cartWrap{
+	position: relative;
+	float: right;
+	top: 20px;
+}
+#navFix .subnav{
+	padding-top: 10px;
 }
