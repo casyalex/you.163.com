@@ -167,7 +167,7 @@
 	position: relative;
 	overflow: hidden;
 }
-#new .colorNum{
+#new .colorNum,#recommend .colorNum{
 	position: absolute;
 	left: 10px;
 	top: 5px;
@@ -186,15 +186,15 @@
 #new img:nth-of-type(2){
 	display: none;
 }
-#new .title{
+#new .title,#recommend .title{
 	text-align: center;
 	padding: 10px 0;
 	font-size: 12px;
 }
-#new .title a{
+#new .title a,#recommend .title a{
 	font-weight: bold;
 }
-#new .title p{
+#new .title p,#recommend .title p{
 	color: #D4282D;
 	margin-top: 5px;
 }
@@ -217,4 +217,74 @@
 }
 #new .prev:hover,#new .next:hover{
 	background: #b19e7a;
+}
+
+/*----------人气推荐----------*/
+#recommend{
+	background: #F4F0EA;
+	padding: 50px 0;
+}
+#recommend header{
+	margin-bottom: 20px;
+}
+#recommend h3{
+	font-size: 28px;
+	color: #666;
+	margin-right: 20px;
+	float: left;
+}
+#recommend header ul{
+	float: left;
+	padding-top: 5px;
+}
+#recommend header li{
+	float: left;
+	line-height: 28px;
+	margin-right: 50px;
+	cursor: pointer;
+}
+#recommend header li:hover,#recommend header li.active{
+	border-bottom: 2px solid #B4A078;
+}
+#recommend header .right{
+	padding-top: 5px;
+}
+#recommend .box{
+	position: relative;
+	background: #fff;
+	width: 223px;
+	height: 210px;
+	float: left;
+	margin-left: 10px;
+	text-align: center;
+	overflow: hidden;
+}
+#recommend .box:nth-child(1){
+	width: 390px;
+	height: 430px;
+	margin-left: 0;
+}
+#recommend .box:nth-child(5),#recommend .box:nth-child(6),#recommend .box:nth-child(7){
+	margin-top: 10px;
+}
+#recommend .colorNum{
+	top: 10px;
+	z-index: 2;
+}
+#recommend img{
+	width: 180px;
+	height: 170px;
+}
+#recommend .box:nth-child(1) img{
+	width: 390px;
+	height: 390px;
+}
+#recommend .title{
+	padding: 0;
+}
+#recommend .content{
+	display: none;
+}
+#recommend .content:nth-of-type(1){
+	display: block;
 }
