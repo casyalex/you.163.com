@@ -126,6 +126,9 @@
 	font-size: 20px;
 	text-align: center;
 	cursor: pointer;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
 }
 #productImg .number div input{
 	border-left: none;
@@ -181,4 +184,88 @@
 	font-size: 14px;
 	color: #999;
 	background: url(../images/collection_bg.gif) center 6px no-repeat;
+}
+
+
+
+/*----------大家都在看----------*/
+#look{
+	margin: 20px auto;
+}
+#look .center{
+	border: 1px solid #E8E8E8;
+}
+#look h3{
+	font: bold 18px/44px "微软雅黑";
+	background: #f5f5f5;
+	padding-left: 20px;
+}
+#look .content{
+	position: relative;
+}
+#look .carouselImgCon{
+	position: relative;
+	height: 250px;
+	margin: 0 80px;
+	padding-bottom: 20px;
+	overflow: hidden;
+}
+#look .carouselImgCon ul{
+	position: absolute;
+	left: 0;
+	width: 1920px;
+}
+#look .carouselImgCon li{
+	float: left;
+	width: 210px;
+	text-align: center;
+	margin-right: 30px;
+}
+#look li a{
+	font: bold 12px/12px "微软雅黑";
+	display: block;
+}
+#look li span{
+	font: 12px/12px "微软雅黑";
+	color: #d4282d;
+	display: block;
+	margin-top: 16px;
+}
+#look li img{
+	width: 210px;
+	height: 210px;
+}
+#look .prev,#look .next{
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	background: #D1C5AF;
+	color: #FFF;
+	font-size: 30px;
+	line-height: 30px;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	margin-top: -25px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+#look .prev{
+	left: 20px;
+}
+#look .next{
+	right: 20px;
+}
+#look .prev:hover,#look .next:hover{
+	background: #B4A078;
+}
+
+/*为按钮不能点击状态设置*/
+#look div.noClick{
+	background: #ddd;
+}
+#look div.noClick:hover{
+	background: #ddd;
 }
