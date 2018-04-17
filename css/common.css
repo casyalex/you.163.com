@@ -5,6 +5,8 @@ body{
 	font-size: 14px;
 	color: #333;
 	font-family: "微软雅黑";
+	min-width: 1090px;
+	min-height: 100%;
 }
 ul,ol{
 	margin: 0;
@@ -621,6 +623,7 @@ footer .foot .copy a{
 	right: 1%;
 	text-align: center;
 	background: #fff;
+	z-index: 3;
 }
 #sideBar .top{
 	border: 1px solid #ddd;
