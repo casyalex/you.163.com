@@ -235,7 +235,7 @@
 	width: 210px;
 	height: 210px;
 }
-#look .prev,#look .next{
+#look .prev,#look .next,#bottom .prev,#bottom .next{
 	width: 30px;
 	height: 30px;
 	text-align: center;
@@ -343,7 +343,7 @@
 #bottom .border{
 	border: 1px solid #E8E8E8;
 	border-top: none;
-	padding: 14px 14px 0 14px;
+	padding: 14px 14px 0 10px;
 }
 #bottom .eTitle{
 	border-bottom: 1px solid #eaeaea;
@@ -370,4 +370,123 @@
 }
 #bottom .eTitle .active span{
 	color: #B4A078;
+}
+#bottom .evaluate .border>ul>li{
+	border-bottom: 1px dashed #E8E8E8;
+	padding: 30px 0;
+	overflow: hidden;
+}
+#bottom .avatar{
+	float: left;
+	width: 90px;
+	text-align: center;
+	margin-right: 4px;
+}
+#bottom .avatar img{
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin: 0 auto 14px;
+}
+#bottom .avatar .vip1{
+	display: inline-block;
+	background: url(../images/vip.gif) no-repeat 0 0;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	margin-right: 6px;
+}
+#bottom .avatar span{
+	vertical-align: middle;
+	font-size: 12px;
+}
+#bottom .text{
+	width: 630px;
+	float: left;
+	padding-top: 18px;
+}
+#bottom .text p{
+	line-height: 20px;
+}
+#bottom .smallImg{
+	margin: 15px 0;
+	overflow: hidden;
+}
+#bottom .smallImg span{
+	float: left;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#bottom .smallImg img{
+	width: 60px;
+	height: 60px;
+}
+#bottom .color{
+	font-size: 12px;
+	color: #9f9f9f;
+	line-height: 16px;
+}
+#bottom .dialog{
+	border: 1px solid #E8E8E8;
+	background: #F5F5F5;
+	margin: 10px 0 30px 0;
+	position: relative;
+	height: 0;
+	/*height: 510px;*/
+	transition: 0.3s;
+	opacity: 0;
+	overflow: hidden;
+}
+#bottom .carouselImgCon{
+	position: relative;
+	width: 584px;
+	height: 438px;
+	margin: 50px auto 20px;
+	overflow: hidden;
+}
+#bottom .carouselImgCon ul{
+	position: absolute;
+	left: 0;
+	width: 2000px;
+}
+#bottom .carouselImgCon li{
+	float: left;
+}
+#bottom .carouselImgCon img{
+	width: 584px;
+	height: 438px;
+}
+#bottom .dialog .close{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	font-size: 25px;
+	color: #ccc;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+}
+#bottom .dialog .close:hover{
+	color: #999;
+}
+#bottom .prev,#bottom .next{
+	width: 48px;
+	height: 48px;
+	border-radius: 0;
+	line-height: 48px;
+	font-size: 20px;
+	background: #b0b0b0;
+}
+#bottom .prev{
+	left: 30px;
+}
+#bottom .next{
+	right: 30px;
+}
+#bottom .prev:hover,#bottom .next:hover{
+	background: #848484;
 }
