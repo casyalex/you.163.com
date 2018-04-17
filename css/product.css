@@ -376,6 +376,9 @@
 	padding: 30px 0;
 	overflow: hidden;
 }
+#bottom .evaluate .border>ul>li:last-child{
+	border: none;
+}
 #bottom .avatar{
 	float: left;
 	width: 90px;
@@ -490,3 +493,68 @@
 #bottom .prev:hover,#bottom .next:hover{
 	background: #848484;
 }
+#bottom .page{
+	text-align: right;
+	margin-top: 20px;
+	font-size: 0;
+}
+#bottom .page span{
+	display: inline-block;
+	font-size: 12px;
+	padding: 7px 10px;
+	border: 1px solid #e6e6e6;
+	border-left: none;
+	cursor: pointer;
+}
+#bottom .page span:first-child{
+	border-left: 1px solid #e6e6e6;
+}
+#bottom .page div{
+	display: inline-block;
+}
+#bottom .page span.active{
+	background: #B4A078;
+	color: #fff;
+	border: none;
+	padding: 8px 10px 8px 11px;
+}
+#bottom .page span:hover{
+	color: #B4A078;
+}
+#bottom .page span.active:hover{
+	opacity: 0.9;
+	color: #fff;
+}
+
+/*专题推荐*/
+#bottom .special{
+	width: 298px;
+	border: 1px solid #e8e8e8;
+	float: right;
+}
+#bottom .special h3{
+	font: bold 18px/41px "微软雅黑";
+	text-align: center;
+	background: #F5F5F5;
+	border-bottom: 1px solid #e8e8e8;
+}
+#bottom .special div{
+	width: 260px;
+	margin: 0 auto;
+	position: relative;
+	margin-bottom: 20px;
+}
+#bottom .special div:nth-of-type(1){
+	margin-top: 20px;
+}
+#bottom .special div a:nth-child(2){
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	background: rgba(0,0,0,.7);
+	color: #fff;
+	font: 14px/30px "微软雅黑";
+}
+
