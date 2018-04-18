@@ -80,6 +80,21 @@ window.yx={
 					yx.removeEvent(window,"scroll",delayImg);
 				}
 			}
+		},
+		backUp:function(){		//回到顶部
+			var back=yx.g('.back');
+			var timer;
+			back.onclick=function(){
+				var top=window.pageYOffset;
+				timer=setInterval(function(){
+					top-=100;
+					if(top<=0){
+						top=0;
+						clearInterval(timer);
+					}
+					window.scrollTo(0,top);
+				},16);
+			}
 		}
 	}
 }
