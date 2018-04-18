@@ -98,7 +98,7 @@
 	font-size: 24px;
 	color: #666;
 	font-weight: normal;
-	z-index: 2;
+	z-index: 1;
 	position: relative;
 	margin-top: 50px;
 }
@@ -108,7 +108,7 @@
 	display: inline-block;
 	padding-top: 20px;
 	margin-top: 20px;
-	z-index: 2;
+	z-index: 1;
 	position: relative;
 }
 #brand .bBox img{
@@ -269,7 +269,7 @@
 }
 #recommend .colorNum{
 	top: 10px;
-	z-index: 2;
+	z-index: 1;
 }
 #recommend img{
 	width: 180px;

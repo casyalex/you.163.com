@@ -260,6 +260,7 @@ th,td{
 }
 .nav .center{
 	position: relative;
+	z-index: 3;
 }
 .nav .logo,.nav .login{
 	display: none;
@@ -456,11 +457,17 @@ th,td{
 /*弹出导航样式*/
 .nav .subnav{
 	box-shadow: 0 6px 6px #ececec;
-	padding-bottom: 20px;
-	display: none;
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	background: #fff;
+	
+	opacity: 0;
+	transition: 0.3s opacity;
 }
 .nav .subnav ul{
 	display: none;
+	padding: 10px 0 20px 0;
 }
 .nav .subnav img{
 	display: block;
@@ -479,6 +486,15 @@ th,td{
 	width: 100%;
 	z-index: 3;
 	box-shadow: 0 2px 3px rgba(0,0,0,.2);
+	animation: navMove 0.3s;
+}
+@keyframes navMove{
+	0%{
+		top:-60px;
+	}
+	100%{
+		top: 0;
+	}
 }
 #navFix .logo{
 	display: block;
@@ -514,7 +530,6 @@ th,td{
 	top: 20px;
 }
 #navFix .subnav{
-	padding-top: 10px;
 }
 
 /*----------底部----------*/
