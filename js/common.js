@@ -19,8 +19,17 @@ window.yx={
 			obj.detachEvent('on'+ev,fn);
 		}
 	},
+	getTopValue:function(obj){		//获取元素离html距离
+		var top=0;
+		while(obj.offsetParent){
+			top+=obj.offsetTop;
+			obj=obj.offsetParent;
+		}
+		
+		return top;
+	},
 	public:{
-		navFn:function(){
+		navFn:function(){		//吸顶导航
 			var nav=yx.g('.nav');
 			var lis=yx.ga(".navbar>li");
 			var subnav=yx.g('.subnav');
@@ -52,8 +61,25 @@ window.yx={
 			function setNavPos(){
 				nav.id=window.pageYOffset>nav.offsetTop?"navFix":"";
 			}
-			
-			
+		},
+		lazyLoadFn:function(){		//图片懒加载
+			yx.addEvent(window,'scroll',delayImg);
+			delayImg();
+			function delayImg(){
+				var originals=yx.ga(".original");	//获取所有懒加载图片
+				var scrollTop=window.innerHeight+window.pageYOffset;
+				
+				for (var i=0;i<originals.length;i++) {
+					if(yx.getTopValue(originals[i])<scrollTop){
+						originals[i].src=originals[i].getAttribute("data-original");
+						originals[i].removeAttribute("class");
+					}
+				}
+				
+				if(originals[originals.length-1].getAttribute("src")!="images/empty.gif"){
+					yx.removeEvent(window,"scroll",delayImg);
+				}
+			}
 		}
 	}
 }

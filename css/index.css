@@ -224,6 +224,9 @@
 	background: #F4F0EA;
 	padding: 50px 0;
 }
+#recommend .original{
+	background: #fff url(../images/original.png) center no-repeat;
+}
 #recommend header{
 	margin-bottom: 20px;
 }
@@ -293,6 +296,9 @@
 #limit{
 	width: 1090px;
 	margin: 50px auto;
+}
+#limit .original{
+	background: #fff url(../images/original.png) center no-repeat;
 }
 #limit h3{
 	font-size: 28px;
