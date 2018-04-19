@@ -31,13 +31,14 @@
 			this.creatDom();
 		},
 		creatDom:function(){
+			var self=this;
 			this.box=document.getElementById(this.settings.id);
 			//创建上下按钮
 			this.prevBtn=document.createElement('div');
 			this.prevBtn.className='prev';
 			this.prevBtn.innerHTML='<';
 			this.prevBtn.onclick=function(){
-				
+				self.prev();
 			};
 			this.box.appendChild(this.prevBtn);
 			
@@ -45,7 +46,7 @@
 			this.nextBtn.className='next';
 			this.nextBtn.innerHTML='>';
 			this.nextBtn.onclick=function(){
-				
+				self.next();
 			};
 			this.box.appendChild(this.nextBtn);
 			
@@ -71,6 +72,134 @@
 				
 				this.box.appendChild(this.circleWrap);
 			}
+			
+			this.moveInit();
+		},
+		moveInit:function(){
+			this.cn=0;			//当前的索引
+			this.ln=0;			//上一个索引
+			
+			this.canClick=true;		//是否可以点击
+			this.endNum=this.settings.totalNum/this.settings.moveNum;		//停止条件
+			this.opacityItem=this.box.children[0].children;				//运动透明度的元素
+			this.positionItemWrap=this.box.children[0].children[0];					//运动位置的元素的父级
+			this.positionItem=this.positionItemWrap.children;
+			
+			switch(this.settings.moveWay){
+				case 'opacity':			//透明度变化
+					for(var i=0;i<this.opacityItem.length;i++){
+						this.opacityItem[i].style.opacity=0;
+						this.opacityItem[i].style.transition='.2s opacity';
+					}
+					
+					this.opacityItem[0].style.opacity=1;
+					break;
+				
+				case 'position':		//位置变化
+					var leftMargin=parseInt(getComputedStyle(this.positionItem[0]).marginLeft);
+					var rightMargin=parseInt(getComputedStyle(this.positionItem[0]).marginRight);
+					
+					//元素的单独宽度
+					this.singleWidth=leftMargin+this.positionItem[0].offsetWidth+rightMargin;
+					
+					//运动循环与否
+					if(this.settings.loop){
+						this.positionItemWrap.innerHTML+=this.positionItemWrap.innerHTML;
+					}
+					
+					//设置足够宽
+					this.positionItemWrap.style.width=this.singleWidth*this.positionItem.length+'px';
+			}
+		},
+		opacityFn:function(){		//透明度运动
+			//边界判断
+			if(this.cn<0){
+				if(this.settings.loop){
+					this.cn=this.endNum-1;
+				}else{
+					this.cn=0;
+					this.canClick=true;
+				}
+			}
+			if(this.cn>this.endNum-1){
+				if(this.settings.loop){
+					this.cn=0;
+				}else{
+					this.cn=this.endNum-1;
+					this.canClick=true;
+				}
+			}
+			
+			
+			this.opacityItem[this.ln].style.opacity='0';
+			this.circles[this.ln].className='';
+			
+			this.opacityItem[this.cn].style.opacity='1';
+			this.circles[this.cn].className='active';
+			
+			var self=this;
+			
+			var en=0;
+			this.opacityItem[this.cn].addEventListener('transitionend',function(){		//transitionEnd会多次触发
+				en++;
+				if(en==1){
+					self.canClick=true;
+					self.ln=self.cn;
+				}
+			})
+		},
+		positionFn:function(){
+			if(this.settings.circle){
+				this.circles[this.ln].className='';
+				this.circles[this.cn].className='active';
+			}
+			
+			//边界判断
+			if(this.cn<0){
+				if(this.settings.loop){
+					//循环
+					this.positionItemWrap.style.left=-(this.positionItemWrap.offsetWidth/2)+'px';
+					this.cn=this.endNum-1;
+				}else{
+					this.cn=0;
+					this.canClick=true;
+				}
+			}
+			if(this.cn>this.endNum-1 && !this.settings.loop){
+				this.cn=this.endNum-1;
+			}
+			//边界判断over
+			
+			var self=this;
+			//运动
+			move(this.positionItemWrap,{left:-this.cn*this.singleWidth*this.settings.moveNum},300,'linear',function(){
+				if(self.cn==self.endNum){
+					//这个条件成立，说明现在已经到了第二份的第一屏了
+					this.style.left=0;
+					self.cn=0;
+				}
+				
+				self.canClick=true;
+				self.ln=self.cn;
+			})
+		},
+		prev:function(){		//上一个 点击
+			if(!this.canClick){
+				return;
+			}
+			this.canClick=false;
+			
+			this.cn--;
+			this[this.settings.moveWay+'Fn']();
+		},
+		next:function(){		//下一个 点击
+			if(!this.canClick){
+				return;
+			}
+			this.canClick=false;
+			
+			this.cn++;
+			this[this.settings.moveWay+'Fn']();
 		}
 	};
 	
