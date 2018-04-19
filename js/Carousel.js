@@ -39,6 +39,7 @@
 			this.prevBtn.innerHTML='<';
 			this.prevBtn.onclick=function(){
 				self.prev();
+				self.trigger('leftClick');
 			};
 			this.box.appendChild(this.prevBtn);
 			
@@ -47,6 +48,7 @@
 			this.nextBtn.innerHTML='>';
 			this.nextBtn.onclick=function(){
 				self.next();
+				self.trigger('rightClick');
 			};
 			this.box.appendChild(this.nextBtn);
 			
@@ -61,7 +63,8 @@
 					var span=document.createElement("span");
 					span.index=i;
 					span.onclick=function(){
-						
+						self.cn=this.index;
+						self[self.settings.moveWay+'Fn']();
 					};
 					
 					this.circleWrap.appendChild(span);
@@ -110,6 +113,10 @@
 					//设置足够宽
 					this.positionItemWrap.style.width=this.singleWidth*this.positionItem.length+'px';
 			}
+			
+			if(this.settings.autoPlay){
+				this.autoPlay();
+			}
 		},
 		opacityFn:function(){		//透明度运动
 			//边界判断
@@ -146,6 +153,8 @@
 					self.canClick=true;
 					self.ln=self.cn;
 				}
+				
+				self.endFn();
 			})
 		},
 		positionFn:function(){
@@ -179,6 +188,8 @@
 					self.cn=0;
 				}
 				
+				self.endFn();
+				
 				self.canClick=true;
 				self.ln=self.cn;
 			})
@@ -200,6 +211,43 @@
 			
 			this.cn++;
 			this[this.settings.moveWay+'Fn']();
+		},
+		autoPlay:function(){
+			var self=this;
+			this.timer=setInterval(function(){
+				self.next();
+			},this.settings.intervalTime);
+			
+			//鼠标放上去的时候停止
+			this.box.onmouseenter=function(){
+				clearInterval(self.timer);
+				self.timer=null;
+			};
+			this.box.onmouseleave=function(){
+				self.autoPlay();
+			}
+		},
+		on:function(type,listener){		//添加自定义事件
+			this.events=this.events||{};
+			this.events[type]=this.events[type]||[];
+			this.events[type].push(listener);
+		},
+		trigger:function(type){
+			if(this.events && this.events[type]){
+				for (var i=0;i<this.events[type].length;i++) {
+					this.events[type][i].call(this);
+				}
+			}
+		},
+		endFn:function(){
+			if(!this.settings.loop){
+				if(this.cn==0){
+					this.trigger('leftEnd');
+				}
+				if(this.cn==this.endNum-1){
+					this.trigger('rightEnd');
+				}
+			}
 		}
 	};
 	
