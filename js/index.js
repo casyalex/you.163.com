@@ -24,7 +24,7 @@ newProduct.init({
 	loop:true,
 	totalNum:8,
 	moveNum:4,
-	circle:false,
+	circle:true,
 	moveWay:'position'
 });
 

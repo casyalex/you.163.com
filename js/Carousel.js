@@ -160,7 +160,12 @@
 		positionFn:function(){
 			if(this.settings.circle){
 				this.circles[this.ln].className='';
-				this.circles[this.cn].className='active';
+				
+				if(this.cn>this.circles.length-1){			//因为位移要将 移动的元素复制一份，会导致圆点的数量、索引与轮播的索引对不上。当循环启用时，如果有n个要移动，第二轮第一个轮播图，实际是第n+1张，直接放进圆点circles数组就会出现undefined（因为圆点始终只有n个），所以要手动将第一个圆点改回来。
+					this.circles[0].className='active';
+				}else{
+					this.circles[this.cn].className='active';
+				}
 			}
 			
 			//边界判断
