@@ -3,7 +3,7 @@ yx.public.navFn();
 yx.public.lazyLoadFn();
 yx.public.backUp();
 
-
+//大banner轮播
 var bannerPic=new Carousel();
 bannerPic.init({
 	id:'bannerPic',
@@ -16,6 +16,7 @@ bannerPic.init({
 	moveWay:'opacity'
 });
 
+//新品轮播
 var newProduct=new Carousel();
 newProduct.init({
 	id:'newProduct',
@@ -43,3 +44,21 @@ newProduct.on('rightClick',function(){
 newProduct.on('leftClick',function(){
 	this.nextBtn.style.background='#D0C4AF';
 });
+
+//人气推荐选项卡
+;(function(window,undefined){
+	var titles=yx.ga("#recommend header li");
+	var contents=yx.ga("#recommend .content");
+	
+	for (var i=0;i<titles.length;i++) {
+		titles[i].index=i;
+		titles[i].onclick=function(){
+			for (var i=0;i<titles.length;i++) {
+				titles[i].className='';
+				contents[i].style.display='none';
+			}
+			titles[this.index].className='active';
+			contents[this.index].style.display='block';
+		}
+	}
+})(window,undefined);
