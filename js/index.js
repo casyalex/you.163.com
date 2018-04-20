@@ -69,17 +69,24 @@ newProduct.on('leftClick',function(){
 	var timeBox=yx.g('#limit .timeBox');
 	var spans=yx.ga('#limit .timeBox span');
 	var timer=setInterval(countDown,1000);
-	
+	var curTime=json_promotion.currentTime;
+	var endTime=json_promotion.startTime;
+	console.log(curTime<endTime);
 	//倒计时
 	function countDown(){
-		var endTime=new Date(2018,5,20,19);			//这里设置倒计时日期
-		if(new Date()<endTime){		//如果当前地事件没有超过结束地时间才倒数
-			var overTime=yx.cutTime(endTime);
+		if(curTime<endTime){		//如果当前地事件没有超过结束地时间才倒数
+			var overTime=yx.cutTime(endTime,curTime);
 			spans[0].innerHTML=yx.format(overTime.h);
 			spans[1].innerHTML=yx.format(overTime.m);
 			spans[2].innerHTML=yx.format(overTime.s);
+			curTime=curTime+1000;
 		}else{
 			clearInterval(timer);
 		}
 	}
+	
+	//商品数据
+	var boxWrap=yx.g('#limit .boxWrap');
+	var str=0;
+	
 })(window,undefined)

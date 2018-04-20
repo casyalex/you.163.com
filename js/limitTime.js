@@ -1,5 +1,5 @@
 var json_promotion = {
-	"currentTime": 1490001617520,
+	"currentTime":1489978800000,
 	"itemList": [{
 		"actualPrice": 199,						//限时价
 		"currentSellVolume": 573,				//剩下的数量

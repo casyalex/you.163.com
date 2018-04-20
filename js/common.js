@@ -28,15 +28,14 @@ window.yx={
 		
 		return top;
 	},
-	cutTime:function(target){
-		var currentDate=new Date();
-		var v=Math.abs(target - currentDate);
+	cutTime:function(target,begin){
+		var v=Math.abs(target - begin);
 		
 		return {
 			d:parseInt(v/(24*3600000)),
 			h:parseInt(v%(24*3600000)/3600000),
 			m:parseInt(v%(24*3600000)%3600000/60000),
-			s:parseInt(v%(24*3600000)%3600000/60000/1000)
+			s:parseInt(v%(24*3600000)%3600000%60000/1000)
 		};
 	},
 	format:function(v){
