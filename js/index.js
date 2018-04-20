@@ -1,6 +1,6 @@
 //公用方法调用
 yx.public.navFn();
-yx.public.lazyLoadFn();
+//懒加载最好放到最后
 yx.public.backUp();
 
 //大banner轮播
@@ -71,7 +71,6 @@ newProduct.on('leftClick',function(){
 	var timer=setInterval(countDown,1000);
 	var curTime=json_promotion.currentTime;
 	var endTime=json_promotion.startTime;
-	console.log(curTime<endTime);
 	//倒计时
 	function countDown(){
 		if(curTime<endTime){		//如果当前地事件没有超过结束地时间才倒数
@@ -87,6 +86,43 @@ newProduct.on('leftClick',function(){
 	
 	//商品数据
 	var boxWrap=yx.g('#limit .boxWrap');
-	var str=0;
+	var str='';
+	var item=json_promotion.itemList;
+	
+	for (var i=0;i<item.length;i++) {
+		str+='<div class="limitBox clearfix">'+
+						'<a href="#" class="left scaleImg"><img class="original" src="images/empty.gif" data-original="'+item[i].primaryPicUrl+'"/></a>'+
+						'<div class="right">'+
+							'<a href="#" class="title">'+item[i].itemName+'</a>'+
+							'<p>'+item[i].simpleDesc+'</p>'+
+							'<div class="numBar clearfix">'+
+								'<div class="numCon"><span style="width:'+Number(item[i].currentSellVolume)/Number(item[i].totalSellVolume)*100+'%'+'"></span></div>'+
+								'<span class="numTips">'+item[i].currentSellVolume+'</span>'+
+							'</div>'+
+							'<div>'+
+								'<span class="xianshi">限时价</span><span class="fuhao">￥</span><strong>'+item[i].actualPrice+'</strong><span class="yuanjia">原价￥'+item[i].retailPrice+'</span>'+
+							'</div>'+
+							'<a href="#" class="qianggou">立即抢购</a>'+
+						'</div>'+
+					'</div>';
+	}
+	boxWrap.innerHTML=str;
 	
 })(window,undefined)
+
+
+//大家都在说轮播图
+var say=new Carousel();
+say.init({
+	id:'sayPic',
+	autoPlay:true,
+	intervalTime:1700,
+	loop:true,
+	totalNum:4,
+	moveNum:1,
+	circle:true,
+	moveWay:'position'
+});
+
+
+yx.public.lazyLoadFn();
