@@ -41,6 +41,15 @@ window.yx={
 	format:function(v){
 		return v<10?'0'+v:v;
 	},
+	parseUrl:function(url){			//解析url
+		var reg=/(\w+)=(\w+)/ig;
+		var result={};
+		url.replace(reg,function(a,b,c){
+			result[b]=c;
+		});
+		
+		return result;
+	},
 	public:{
 		navFn:function(){		//吸顶导航
 			var nav=yx.g('.nav');
