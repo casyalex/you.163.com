@@ -62,3 +62,24 @@ newProduct.on('leftClick',function(){
 		}
 	}
 })(window,undefined);
+
+
+//x限时购
+;(function(window,undefined){
+	var timeBox=yx.g('#limit .timeBox');
+	var spans=yx.ga('#limit .timeBox span');
+	var timer=setInterval(countDown,1000);
+	
+	//倒计时
+	function countDown(){
+		var endTime=new Date(2018,5,20,19);			//这里设置倒计时日期
+		if(new Date()<endTime){		//如果当前地事件没有超过结束地时间才倒数
+			var overTime=yx.cutTime(endTime);
+			spans[0].innerHTML=yx.format(overTime.h);
+			spans[1].innerHTML=yx.format(overTime.m);
+			spans[2].innerHTML=yx.format(overTime.s);
+		}else{
+			clearInterval(timer);
+		}
+	}
+})(window,undefined)
