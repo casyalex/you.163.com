@@ -48,4 +48,26 @@ if(!pageId || !curData){
 	yx.g('#productImg .info .price').innerHTML='<div><span>售价</span><strong>￥'+curData.retailPrice+'.00'+'</strong></div>'+
 					'<div><span>促销</span><a href="'+curData.hdrkDetailVOList[0].huodongUrlPc+'" class="tag">'+curData.hdrkDetailVOList[0].activityType+'</a><a href="'+curData.hdrkDetailVOList[0].huodongUrlPc+'" class="discount">'+curData.hdrkDetailVOList[0].name+'</a></div>'+
 					'<div><span>服务</span><a href="#" class="service"><i></i>30天无忧退货<i></i>48小时快速退款<i></i>满88元免邮费<i></i>网易自营品牌</a></div>';
+	
+	//产品型号导入
+	var format=yx.g('#productImg .info .format');
+	for (var i = 0; i < curData.skuSpecList.length; i++) {
+		var dl=document.createElement("dl");
+		var dt=document.createElement('dt');
+		dt.innerHTML=curData.skuSpecList[i].name;
+		dl.appendChild(dt);
+		dl.className='clearfix';
+		
+		for (var j = 0; j < curData.skuSpecList[i].skuSpecValueList.length; j++) {
+			var dd=document.createElement("dd");
+			dd.innerHTML=curData.skuSpecList[i].skuSpecValueList[j].value;
+			dd.setAttribute('data-id',curData.skuSpecList[i].skuSpecValueList[j].id);
+			dd.onclick=function(){
+				
+			};
+			dl.appendChild(dd);
+		}
+		
+		format.appendChild(dl);
+	}
 })();
