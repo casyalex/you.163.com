@@ -51,6 +51,7 @@ if(!pageId || !curData){
 	
 	//产品型号导入
 	var format=yx.g('#productImg .info .format');
+	var dds=[];
 	for (var i = 0; i < curData.skuSpecList.length; i++) {
 		var dl=document.createElement("dl");
 		var dt=document.createElement('dt');
@@ -63,11 +64,65 @@ if(!pageId || !curData){
 			dd.innerHTML=curData.skuSpecList[i].skuSpecValueList[j].value;
 			dd.setAttribute('data-id',curData.skuSpecList[i].skuSpecValueList[j].id);
 			dd.onclick=function(){
-				
+				changeProduct.call(this);
 			};
+			
+			dds.push(dd);
 			dl.appendChild(dd);
 		}
 		
 		format.appendChild(dl);
+	}
+	
+	function changeProduct(){
+		//如果不能点击的话就返回
+		if(this.className.indexOf('noClick')!=-1){
+			return;
+		}
+		var curId=this.getAttribute('data-id');
+		var othersDd=[];		//对方所有的dd
+		var mergeId=[];			//与点击的id组合 查询库存
+		
+		for(var attr in curData.skuMap){
+			if(attr.indexOf(curId)!=-1){
+				var otherId=attr.replace(curId,'').replace(';','');
+				
+				for (var i = 0; i < dds.length; i++) {
+					if(dds[i].getAttribute('data-id')==otherId){
+						othersDd.push(dds[i]);
+					}
+				}
+				
+				mergeId.push(attr);
+			}
+		}
+		var brothers=this.parentNode.querySelectorAll('dd');
+		if(this.className.indexOf('active')!=-1){
+			this.className='';
+			
+			for (var i = 0; i < othersDd.length; i++) {
+				if(othersDd[i].className=='noClick'){
+					othersDd[i].className='';
+				}
+			}
+		}else{
+			for (var i = 0; i < brothers.length; i++) {
+				if(brothers[i].className.indexOf('active')!=-1){
+					brothers[i].className='';
+				}
+			}
+			
+			this.className='active';
+				
+			for (var i = 0; i < othersDd.length; i++) {
+				if(othersDd[i].className.indexOf('noClick')!=-1){
+					othersDd[i].className='';
+				}
+				if(curData.skuMap[mergeId[i]].sellVolume==0){
+					othersDd[i].className='noClick';
+				}
+			}
+			
+		}
 	}
 })();

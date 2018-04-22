@@ -110,6 +110,11 @@
 	border: 2px solid #B4A078;
 	background: url(../images/ico_16.gif) right bottom no-repeat;
 }
+#productImg .format dd.noClick{
+	cursor: pointer;
+	opacity: 0.5;
+	border: 1px dashed #e4e4e4;
+}
 #productImg .number *{
 	float: left;
 	font-size: 12px;
