@@ -201,3 +201,45 @@ if(!pageId || !curData){
 		moveWay:'position'
 	});
 })();
+
+//详情评价选项卡
+(function(){
+	var as=yx.ga("#bottom .title a");
+	var tabs=yx.ga('#bottom .content>div');
+	var ln=0;
+	
+	for (var i = 0; i < as.length; i++) {
+		as[i].index=i;
+		as[i].onclick=function(){
+			as[ln].className='';
+			tabs[ln].style.display='none';
+			
+			this.className='active';
+			tabs[this.index].style.display='block';
+			
+			ln=this.index;
+		}
+	}
+	
+	//详情参数表格
+	var table=yx.g('#bottom .content table');
+	for(var i=0; i<curData.attrList.length;i++){
+		if(i%2==0){
+			var tr=document.createElement("tr");
+		}
+		var td1=document.createElement("td");
+		td1.innerHTML=curData.attrList[i].attrName;
+		var td2=document.createElement("td");
+		td2.innerHTML=curData.attrList[i].attrValue;
+		
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		
+		table.appendChild(tr);
+	}
+	
+	//专题图
+	var zhuanTi=yx.g('#bottom .content .img');
+	zhuanTi.innerHTML=curData.itemDetail.detailHtml;
+})();
+

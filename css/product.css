@@ -322,7 +322,7 @@
 	color: #999;
 }
 #bottom .img p{
-	height: 200px;
+	min-height: 100px;
 	background: #fff url(../images/original.png) no-repeat center; 
 }
 #bottom .problem{
