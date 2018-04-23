@@ -124,5 +124,53 @@ if(!pageId || !curData){
 			}
 			
 		}
+		addNum();
 	}
+	
+	//加减功能
+	addNum();
+	function addNum(){
+		var actives=yx.ga('#productImg .info .format .active');
+		var btnParent=yx.g('#productImg .info .number div');
+		var btns=btnParent.children;
+		var ln=curData.skuSpecList.length;
+		
+		if(actives.length==ln){
+			btnParent.className="";
+		}else{
+			btnParent.className="noClick";
+		}
+		
+		//减
+		btns[0].onclick=function(){
+			if(btnParent.className){
+				return;
+			}
+			btns[1].value--;
+			if(btns[1].value<0){
+				btns[1].value=0;
+			}
+		}
+		
+		//input
+		btns[1].onfocus=function(){
+			if(btnParent.className){
+				
+				//让他失去焦点
+				this.blur();
+			}
+		}
+		
+		//加
+		btns[2].onclick=function(){
+			if(btnParent.className){
+				return;
+			}
+			btns[1].value++;
+			if(btns[1].value>99){
+				btns[1].value=99;
+			}
+		}
+	};
+	
 })();
