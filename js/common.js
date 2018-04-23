@@ -41,6 +41,10 @@ window.yx={
 	format:function(v){
 		return v<10?'0'+v:v;
 	},
+	formatDate:function(obj){
+		var d=new Date(obj);
+		return d.getFullYear()+'-'+yx.format(d.getMonth()+1)+'-'+yx.format(d.getDate())+' '+yx.format(d.getHours())+':'+yx.format(d.getMinutes())+':'+yx.format(d.getSeconds());
+	},
 	parseUrl:function(url){			//解析url
 		var reg=/(\w+)=(\w+)/ig;
 		var result={};

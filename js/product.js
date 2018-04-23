@@ -243,3 +243,140 @@ if(!pageId || !curData){
 	zhuanTi.innerHTML=curData.itemDetail.detailHtml;
 })();
 
+//评价功能
+(function(){
+	console.log(commentData);
+	
+	var evaluateNum=commentData[pageId].data.result.length;		//评价总数
+	var evaluateText=evaluateNum>1000?'999+':evaluateNum;
+	yx.ga('#bottom .title a')[1].innerHTML='评价<span> ('+evaluateText+')</span>';
+	
+	var allData=[[],[]];		//第一个全部评价，第二个有图评价
+	for (var i = 0; i < evaluateNum; i++) {
+		allData[0].push(commentData[pageId].data.result[i]);
+		if(commentData[pageId].data.result[i].picList.length){
+			allData[1].push(commentData[pageId].data.result[i]);
+		}
+	}
+	yx.ga('#bottom .eTitle span')[0].innerHTML='全部('+allData[0].length+')';
+	yx.ga('#bottom .eTitle span')[1].innerHTML='有图('+allData[1].length+')';
+	
+	var curData=allData[0];		//当前显示数据
+	
+	var btns=yx.ga('#bottom .eTitle div');
+	var ln=0;
+	for (var i = 0; i < btns.length; i++) {
+		btns[i].index=i;
+		btns[i].onclick=function(){
+			btns[ln].className='';
+			this.className='active';
+			
+			ln=this.index;
+			
+			curData=allData[this.index];
+			showComment(10,0);
+		}
+	}
+	
+	//显示评价数据
+	showComment(10,0);
+	function showComment(pn,cn){
+		//pn		一页显示几条
+		//cn		现在是哪页
+		var ul=yx.g('#bottom .border>ul');
+		var dataStart=pn*cn;		//起始评价
+		var dataEnd=dataStart+pn;		//结束评价
+		
+		if(dataEnd>curData.length){
+			dataEnd=curData.length;
+		}
+		//主要结构
+		var str='';
+		ul.innerHTML='';
+		for (var i = dataStart; i < dataEnd; i++) {
+			var avatart=curData[i].frontUserAvatar?curData[i].frontUserAvatar:'images/avatar.png';		//头像地址
+			
+			var smallImg='';
+			var dialog='';
+			if(curData[i].picList.length){
+				//这个条件满足，说明这条评论有小图以及轮播图
+				var span='';
+				var li=''
+				for (var j=0;j<curData[i].picList.length;j++) {
+					span+='<span><img src="'+curData[i].picList[j]+'" alt="" /></span>';
+					li+='<li><img src="'+curData[i].picList[j]+'"/></li>';
+				}
+				smallImg='<div class="smallImg">'+span+'</div>';
+				dialog='<div class="dialog" id="commentImg'+i+'" data-imgnum="'+curData[i].picList.length+'">'+
+							'<div class="carouselImgCon">'+
+								'<ul>'+li+'</ul>'+
+							'</div>'+
+							'<div class="close">×</div>'+
+						'</div>'
+			}
+			
+			str+='<li>'+
+					'<div class="avatar">'+
+						'<img src="'+avatart+'"/>'+
+						'<a href="#" class="vip1"></a><span>'+curData[i].frontUserName+'</span>'+
+					'</div>'+
+					'<div class="text">'+
+						'<p>'+curData[i].content+'</p>'+
+						'<div class="smallImg">'+smallImg+
+						'</div>'+
+						'<div class="color clearfix">'+
+							'<span class="left">'+
+								curData[i].skuInfo+
+							'</span>'+
+							'<span class="right">'+
+								yx.formatDate(curData[i].createTime)+
+							'</span>'+
+						'</div>'+dialog+
+						'</div>'+
+					'</div>'+
+				'</li>';
+				
+		}
+		ul.innerHTML=str;
+		
+		showImg();
+	};
+	
+	//调用轮播图组件
+	function showImg(){
+		var spans=yx.ga('#bottom .smallImg span');
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].onclick=function(){
+				var dialog=this.parentNode.parentNode.parentNode.lastElementChild;
+				dialog.style.opacity=1;
+				dialog.style.height='510px';
+				
+				var en=0;
+				dialog.addEventListener('transitionend',function(){
+					en++;
+					if(en==1){
+						var id=this.id;
+						var commentImg=new Carousel();
+						commentImg.init({
+							id:id,
+							autoPlay:false,
+							intervalTime:1500,
+							loop:false,
+							totalNum:dialog.getAttribute('data-imgnum'),
+							moveNum:1,
+							circle:false,
+							moveWay:'position'
+						});
+					}
+				});
+				var closeBtn=dialog.querySelector('.close');
+				closeBtn.onclick=function(){
+					dialog.style.opacity=0;
+					dialog.style.height='0px';
+				}
+			}
+		}
+		
+		
+	}
+})();
