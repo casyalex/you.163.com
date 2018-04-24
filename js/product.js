@@ -406,13 +406,26 @@ if(!pageId || !curData){
 		pageFn('上一页',function(){
 			
 		});
+		
 		//创建数字页码
 		for (var i = 0; i < pn; i++) {
 			var span=document.createElement("span");
 			span.index=i;
 			span.innerHTML=i+1;
-			span.push(span);
+			spans.push(span);
+			
+			//给第1个页码加上class
+			span.className=i?'':'active';
+			
+			span.onclick=function(){
+				cn=this.index;
+				showComment(10,this.innerHTML-1);
+				changePage();
+			};
+			
+			div.appendChild(span);
 		}
+		page.appendChild(div);
 		
 		pageFn('下一页',function(){
 			
@@ -420,7 +433,45 @@ if(!pageId || !curData){
 		pageFn('尾页',function(){
 			
 		});
-		
+		//更新页码功能
+		function changePage(){
+			var cur=spans[cn];		//当前点击的页码
+			var curInner=cur.innerHTML;
+			
+			//用更新后索引的差值做变量更新页码
+			var differ=spans[spans.length-1].innerHTML-spans[0].innerHTML;
+			
+			//点击的是最后的页码
+			if(cur.index==spans.length-1){
+				if(Number(curInner)+differ>totalNum){
+					differ=totalNum-curInner;
+				}
+			}
+			//点击的是最前面地页码
+			if(cur.index==0){
+				if(Number(curInner)-differ<1){
+					differ=Number(curInner)-1;
+				}
+			}
+			for (var i=0;i<spans.length;i++) {
+				//点击最后页码，更新所有页码
+				if(cur.index==spans.length-1){
+					spans[i].innerHTML=Number(spans[i].innerHTML)+differ;
+				}
+				
+				//点击第一个页码
+				if(cur.index==0){
+					spans[i].innerHTML-=differ;
+				}
+				
+				//设置class
+				spans[i].className='';
+				if(spans[i].innerHTML==curInner){
+					spans[i].className='active';
+				}
+				
+			}
+		}
 		//页码创建
 		function pageFn(inner,fn){
 			if(pn<2){
