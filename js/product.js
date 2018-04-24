@@ -275,6 +275,7 @@ if(!pageId || !curData){
 			
 			curData=allData[this.index];
 			showComment(10,0);
+			createPage(10,curData.length);
 		}
 	}
 	
@@ -376,7 +377,60 @@ if(!pageId || !curData){
 				}
 			}
 		}
+	}
+	
+	//页码功能
+	createPage(10,curData.length);
+	function createPage(pn,tn){
+		//pn		显示页码
+		//tn		数据总数
+		var page=yx.g('#bottom .page');
+		var totalNum=Math.ceil(tn/pn);		//最多能显示的页码数量
 		
+		//如果用户给的页数比总页数还要大，就改成总数
+		if(pn>totalNum){
+			pn=totalNum;
+		}
 		
+		page.innerHTML='';
+		
+		var cn=0;			//页码索引值
+		var spans=[];		//把数字的页码都放在一个数组里，其它的地方要用到
+		var div=document.createElement("div");
+		div.className='mainPage';
+		
+		//创建页码
+		pageFn('首页',function(){
+			
+		});
+		pageFn('上一页',function(){
+			
+		});
+		//创建数字页码
+		for (var i = 0; i < pn; i++) {
+			var span=document.createElement("span");
+			span.index=i;
+			span.innerHTML=i+1;
+			span.push(span);
+		}
+		
+		pageFn('下一页',function(){
+			
+		});
+		pageFn('尾页',function(){
+			
+		});
+		
+		//页码创建
+		function pageFn(inner,fn){
+			if(pn<2){
+				return;
+			}
+			
+			var span=document.createElement("span");
+			span.innerHTML=inner;
+			span.onclick=fn;
+			page.appendChild(span);
+		}
 	}
 })();
