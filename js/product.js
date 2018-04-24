@@ -400,12 +400,29 @@ if(!pageId || !curData){
 		div.className='mainPage';
 		
 		//创建页码
-		pageFn('首页',function(){
-			
+		var indexPage=pageFn('首页',function(){
+			for (var i = 0; i < pn; i++) {
+				spans[i].innerHTML=i+1;
+			}
+			cn=0;
+			showComment(10,0);
+			changePage();
 		});
-		pageFn('上一页',function(){
+		if(indexPage){
+			indexPage.style.display='none';
+		}
+		
+		var prevPage=pageFn('上一页',function(){
 			
+			if(cn>0){
+				cn--;
+			}
+			showComment(10,spans[cn].innerHTML-1);
+			changePage();
 		});
+		if(prevPage){
+			prevPage.style.display='none';
+		}
 		
 		//创建数字页码
 		for (var i = 0; i < pn; i++) {
@@ -427,11 +444,22 @@ if(!pageId || !curData){
 		}
 		page.appendChild(div);
 		
-		pageFn('下一页',function(){
-			
+		var nextPage=pageFn('下一页',function(){
+			if(cn<spans.length-1){
+				cn++;
+			}
+			showComment(10,spans[cn].innerHTML-1);
+			changePage();
 		});
-		pageFn('尾页',function(){
-			
+		
+		var endPage=pageFn('尾页',function(){
+			var end=totalNum;
+			for (var i = pn-1; i >=0; i--) {
+				spans[i].innerHTML=end--;
+			}
+			cn=spans.length-1;
+			showComment(10,totalNum-1);
+			changePage();
 		});
 		//更新页码功能
 		function changePage(){
@@ -468,8 +496,19 @@ if(!pageId || !curData){
 				spans[i].className='';
 				if(spans[i].innerHTML==curInner){
 					spans[i].className='active';
+					cn=spans[i].index;
 				}
+			}
+			
+			//显示与隐藏功能页码
+			if(pn>1){
+				//点的是第一个页码，让首页与上一页隐藏
+				var dis=curInner==1?'none':'inline-block';
 				
+				indexPage.style.display=prevPage.style.display=dis;
+				
+				var dis=curInner==totalNum?'none':'inline-block';
+				nextPage.style.display=endPage.style.display=dis;
 			}
 		}
 		//页码创建
@@ -482,6 +521,8 @@ if(!pageId || !curData){
 			span.innerHTML=inner;
 			span.onclick=fn;
 			page.appendChild(span);
+			
+			return span;
 		}
 	}
 })();
