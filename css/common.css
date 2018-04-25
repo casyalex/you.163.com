@@ -352,6 +352,13 @@ th,td{
 	height: 60px;
 	margin-bottom: 10px;
 }
+.cartWrap .list .message span{
+	font-size: 12px;
+	color: #666;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
 .cartWrap .list .img{
 	float: left;
 }

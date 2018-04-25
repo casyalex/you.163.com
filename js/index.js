@@ -2,6 +2,7 @@
 yx.public.navFn();
 //懒加载最好放到最后
 yx.public.backUp();
+yx.public.shopFn();
 
 //大banner轮播
 var bannerPic=new Carousel();

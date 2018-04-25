@@ -205,12 +205,13 @@ if(!pageId || !curData){
 			"name":curData.name,
 			"price":curData.retailPrice,
 			"num":selectNum,
+			"spec":spec,
 			"img":curData.skuMap[id].picUrl,
 			"sign":"productLocal"		//给自己地local取一个标识，避免取到其它人地local
 		};
 		
 		localStorage.setItem(id,JSON.stringify(select));
-		console.log(localStorage);
+		yx.public.shopFn();
 	}
 })();
 

@@ -89,6 +89,38 @@ window.yx={
 			}
 		},
 		shopFn:function(){
+			//购物车添加商品展示
+			var productNum=0;		//小红点的数量
+			(function(local){
+				var totalPrice=0;		//所有商品总价
+				var ul=yx.g('.cart ul');
+				var li='';
+				ul.innerHTML='';
+				
+				for (var i = 0; i < local.length; i++) {
+					var attr=local.key(i);
+					var value=JSON.parse(local[attr]);
+					
+					if(value && value.sign=='productLocal'){
+						li+='<li>'+
+								'<a href="#" class="img"><img src="'+value.img+'"/></a>'+
+								'<div class="message">'+
+									'<p><a href="#">'+value.name+'</a></p>'+
+									'<span>'+value.spec.join(' ')+' x '+value.num+'</span>'+
+								'</div>'+
+								'<div class="price">￥'+value.price+'.00</div>'+
+								'<div class="close">×</div>'+
+							'</li>';
+							
+							totalPrice+=value.num*parseFloat(value.price);
+					}
+				}
+				ul.innerHTML=li;
+				
+				productNum=ul.children.length;
+				yx.g('.cartWrap i').innerHTML=productNum;
+				yx.g('.cartWrap .total span').innerHTML='￥'+totalPrice+'.00';
+			})(localStorage);
 			
 			scrollFn();
 			//购物车功能
