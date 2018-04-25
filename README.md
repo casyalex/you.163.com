@@ -30,7 +30,9 @@ localStorage实现购物车
 商详页id，供看效果
 -----------------
 product.html?id=1113019
+
 product.html?id=1143021
+
 product.html?id=1092014
 
 兼容性
