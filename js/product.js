@@ -175,6 +175,45 @@ if(!pageId || !curData){
 	
 })();
 
+//加入购物车
+;(function(){
+	yx.public.shopFn();
+	
+	var joinBtn=yx.g('#productImg .join');
+	
+	joinBtn.onclick=function(){
+		var actives=yx.ga('#productImg .format .active');	//规格数量
+		var selectNum=yx.g('#productImg .number input').value;		//个数
+		
+		if(actives.length<curData.skuSpecList.length || selectNum<1){
+			alert('请选择正确地规格以及数量');
+			return;
+		}
+		
+		var id='';		//拼接ID
+		var spec=[];	//放规格
+		
+		for (var i = 0; i < actives.length; i++) {
+			id+=actives[i].getAttribute('data-id')+';';
+			spec.push(actives[i].innerHTML);
+		}
+		
+		id=id.substring(0,id.length-1);
+		console.log(id);
+		var select={
+			"id":id,
+			"name":curData.name,
+			"price":curData.retailPrice,
+			"num":selectNum,
+			"img":curData.skuMap[id].picUrl,
+			"sign":"productLocal"		//给自己地local取一个标识，避免取到其它人地local
+		};
+		
+		localStorage.setItem(id,JSON.stringify(select));
+		console.log(localStorage);
+	}
+})();
+
 
 //大家都在看
 ;(function(){
@@ -245,8 +284,6 @@ if(!pageId || !curData){
 
 //评价功能
 (function(){
-	console.log(commentData);
-	
 	var evaluateNum=commentData[pageId].data.result.length;		//评价总数
 	var evaluateText=evaluateNum>1000?'999+':evaluateNum;
 	yx.ga('#bottom .title a')[1].innerHTML='评价<span> ('+evaluateText+')</span>';
