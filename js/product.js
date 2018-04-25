@@ -199,7 +199,6 @@ if(!pageId || !curData){
 		}
 		
 		id=id.substring(0,id.length-1);
-		console.log(id);
 		var select={
 			"id":id,
 			"name":curData.name,
@@ -212,6 +211,12 @@ if(!pageId || !curData){
 		
 		localStorage.setItem(id,JSON.stringify(select));
 		yx.public.shopFn();
+		
+		var cartWrap=yx.g('.cartWrap');
+		cartWrap.onmouseenter();
+		setTimeout(function(){
+			yx.g('.cart').style.display='none';
+		},2000)
 	}
 })();
 

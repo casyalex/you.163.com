@@ -102,7 +102,7 @@ window.yx={
 					var value=JSON.parse(local[attr]);
 					
 					if(value && value.sign=='productLocal'){
-						li+='<li>'+
+						li+='<li data-id="'+value.id+'">'+
 								'<a href="#" class="img"><img src="'+value.img+'"/></a>'+
 								'<div class="message">'+
 									'<p><a href="#">'+value.name+'</a></p>'+
@@ -120,9 +120,42 @@ window.yx={
 				productNum=ul.children.length;
 				yx.g('.cartWrap i').innerHTML=productNum;
 				yx.g('.cartWrap .total span').innerHTML='￥'+totalPrice+'.00';
+				
+				//删除功能
+				var closeBtns=yx.ga('.cart .list .close');
+				for (var i = 0; i < closeBtns.length; i++) {
+					closeBtns[i].onclick=function(){
+						local.removeItem(this.parentNode.getAttribute('data-id'));
+						
+						yx.public.shopFn();
+						if(ul.children.length==0){
+							yx.g('.cart').style.display='none';
+						}
+					}
+				}
+				
+				//小红点移入移出显示购物车
+				var cartWrap=yx.g('.cartWrap');
+				var timer;		//给弹出层一个延迟，改善体现
+				
+					//购物车为0不弹出
+				cartWrap.onmouseenter=function(){
+					if(ul.children.length>0){
+						yx.g('.cart').style.display='block';
+						clearTimeout(timer);
+						scrollFn();
+					}
+				};
+				cartWrap.onmouseleave=function(){
+					timer=setTimeout(function(){
+						yx.g('.cart').style.display='none';
+					},200)
+				};
+			
+				
 			})(localStorage);
 			
-			scrollFn();
+			
 			//购物车功能
 			function scrollFn(){
 				var contentWarp=yx.g('.cart .list');

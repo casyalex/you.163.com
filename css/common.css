@@ -319,7 +319,7 @@ th,td{
 	background: #fff;
 	padding-top: 15px;
 	
-	display: block;
+	display: none;
 	
 	-moz-user-select: none;
 	-webkit-user-select: none;
