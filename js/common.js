@@ -88,6 +88,126 @@ window.yx={
 				nav.id=window.pageYOffset>nav.offsetTop?"navFix":"";
 			}
 		},
+		shopFn:function(){
+			
+			scrollFn();
+			//购物车功能
+			function scrollFn(){
+				var contentWarp=yx.g('.cart .list');
+				var content=yx.g('.cart .list ul');
+				var scrollBar=yx.g('.cart .scrollBar');
+				var slide=yx.g('.cart .slide');
+				var slideWrap=yx.g('.cart .slideWrap');
+				var btns=yx.ga('.scrollBar span');
+				var timer;
+				
+				//设置倍数
+				var beishu=content.offsetHeight/contentWarp.offsetHeight;
+				//撑不满不显示滚动条
+				scrollBar.style.display=beishu<=1?'none':'block';
+				if(beishu>20){
+					beishu=20;
+				}
+				slide.style.height=slideWrap.offsetHeight/beishu+'px';
+				
+				var scrollTop=0;
+				var maxHeight=slideWrap.offsetHeight-slide.offsetHeight;
+				
+				slide.onmousedown=function(ev){
+					var disY=ev.clientY-slide.offsetTop;
+					
+					document.onmousemove=function(ev){
+						scrollTop=ev.clientY-disY;
+						scroll();
+					};
+					document.onmouseup=function(){
+						this.onmousemove=null;
+						ev.cancelBubble=true;
+						return false;
+					}
+				};
+				
+				function scroll(){
+					if(scrollTop<0){
+						scrollTop=0;
+					}else if(scrollTop>maxHeight){
+						scrollTop=maxHeight;
+					}
+					
+					var scaleY=scrollTop/maxHeight;
+					
+					slide.style.top=scrollTop+'px';
+					content.style.top=-scaleY*(content.offsetHeight-contentWarp.offsetHeight)+'px';
+				};
+				
+				//滚轮滚动功能
+				myScroll(contentWarp,function(){
+					scrollTop-=10;
+					scroll();
+					
+					clearInterval(timer);
+				},function(){
+					scrollTop+=10;
+					scroll();
+					
+					clearInterval(timer);
+				});
+				
+				//滚轮事件
+				function myScroll(obj,fnUp,fnDown){
+					obj.onmousewheel=fn;
+					obj.addEventListener('DOMMouseScroll',fn);
+					function fn(ev){
+						if(ev.wheelDelta>0 || ev.detail<0){
+							fnUp.call(obj);
+						}else{
+							fnDown.call(obj);
+						}
+						
+						ev.preventDefault();
+						return false;
+					}
+				}
+				
+				//上下按钮
+				for (var i = 0; i < btns.length; i++) {
+					btns[i].index=i;
+					btns[i].onmousedown=function(){
+						var n=this.index;
+						
+						timer=setInterval(function(){
+							scrollTop=n?scrollTop+5:scrollTop-5;
+							scroll();
+						},16)
+					}
+					btns[i].onmouseup=function(){
+						clearInterval(timer);
+					}
+				}
+				
+				//上下区域点击功能
+				slideWrap.onmousedown=function(ev){
+					timer=setInterval(function(){
+						var slideTop=slide.getBoundingClientRect().top+slide.offsetHeight/2;
+						
+						if(ev.clientY<slideTop){
+							scrollTop-=5;
+						}else{
+							scrollTop+=5;
+						}
+						
+						if(Math.abs(ev.clientY-slideTop)<=5){
+							clearInterval(timer);
+						}
+						
+						scroll();
+					},16)
+				}
+				slideWrap.onmouseup=function(){
+					clearInterval(timer);
+				}
+			}
+		},
 		lazyLoadFn:function(){		//图片懒加载
 			yx.addEvent(window,'scroll',delayImg);
 			delayImg();

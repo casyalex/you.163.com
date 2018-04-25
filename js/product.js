@@ -526,3 +526,9 @@ if(!pageId || !curData){
 		}
 	}
 })();
+
+
+//加入购物车
+(function(){
+	yx.public.shopFn();
+})();

@@ -319,7 +319,10 @@ th,td{
 	background: #fff;
 	padding-top: 15px;
 	
-	display: none;
+	display: block;
+	
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 .cartWrap .cart:before{
 	content: "";
@@ -504,10 +507,10 @@ th,td{
 #navFix .navbar{
 	float: left;
 }
-#navFix .navbar li:nth-last-child(1),#navFix .navbar li:nth-last-child(2),#navFix .navbar li:nth-last-child(3),#navFix .navbar li:nth-last-child(4),#navFix .navbar li:nth-last-child(5){
+#navFix .navbar>li:nth-last-child(1),#navFix .navbar>li:nth-last-child(2),#navFix .navbar>li:nth-last-child(3),#navFix .navbar>li:nth-last-child(4),#navFix .navbar li:nth-last-child(5){
 	display: none;
 }
-#navFix .navbar li{
+#navFix .navbar>li{
 	line-height: 60px;
 	height: 60px;
 	padding: 0 20px;
